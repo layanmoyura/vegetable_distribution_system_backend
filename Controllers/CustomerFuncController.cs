@@ -56,12 +56,21 @@ namespace Online_platform_for_vegetables.Controllers
                 throw ex;
             }
         }
-
-        [HttpGet("customervegetablestock")]
+        //by category
+        [HttpGet("customervegetablestockbycat/{bycategory}")]
         public async Task<ActionResult<IEnumerable<VegetableStock>>> Getvegestock(int bycategory)
         {
             return await _context.VegetableStocks.Where(s => s.VegetablesId == bycategory).ToListAsync();
         }
+
+        //all products
+        [HttpGet("customervegetablestockall")]
+        public async Task<ActionResult<IEnumerable<VegetableStock>>> Getallstock()
+        {
+            return await _context.VegetableStocks.ToListAsync();
+        }
+
+
 
         [HttpPost("customerpayment")]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
