@@ -42,6 +42,9 @@ namespace Online_platform_for_vegetables.Model
         [Required]
         public int FarmerId { get; set; }
 
+        [Required]
+        public string Stock_image { get; set; }
+
 
         
 

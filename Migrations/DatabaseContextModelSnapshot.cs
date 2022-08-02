@@ -470,6 +470,10 @@ namespace Online_platform_for_vegetables.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Stock_image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Updated_Time")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

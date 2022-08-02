@@ -16,10 +16,10 @@ namespace Online_platform_for_vegetables.Model
         [Required]
         public string Deadline { get; set;  }
 
-        [Required]
+      
         public int progress { get; set; }
 
-        [Required]
+       
         public bool Supplied_or_not { get; set; }
 
         [Required]
