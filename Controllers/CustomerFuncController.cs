@@ -26,20 +26,21 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
         [HttpPost("customerorder")]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Order>> PostOrder(Order order )
         {
             try
             {
 
-                VegetableStock vegestock = (VegetableStock)_context.VegetableStocks.Where(b => b.VegetableStocksId == order.vegetableStock.VegetableStocksId);
-                var Entity = await _context.VegetableStocks.FindAsync(vegestock.VegetableStocksId);
-                if (Entity.Amount < order.required_amount_kg)
+               
+                var Entity = await _context.VegetableStocks.FindAsync(order.VegetableStocksId);
+                if (order.required_amount_kg>Entity.Amount)
                 {
-                    return StatusCode(204);
+                    return StatusCode(411);
                 }
 
                 else
                 {
+                    Entity.Amount = Entity.Amount - order.required_amount_kg;
 
 
                     _context.Orders.Add(order);
@@ -56,6 +57,14 @@ namespace Online_platform_for_vegetables.Controllers
                 throw ex;
             }
         }
+
+        [HttpGet("farmer/{id}")]
+        public async Task<ActionResult<IEnumerable<Farmer>>> Getfamerk(int id)
+        {
+            return await _context.Farmers.Where(s => s.FarmerId.Equals(id)).ToListAsync();
+        }
+
+
         //by category
         [HttpGet("customervegetablestockbycat/{bycategory}")]
         public async Task<ActionResult<IEnumerable<VegetableStock>>> Getvegestock(int bycategory)

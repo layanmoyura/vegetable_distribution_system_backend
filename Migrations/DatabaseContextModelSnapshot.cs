@@ -341,20 +341,22 @@ namespace Online_platform_for_vegetables.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Deadline")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FarmerId")
+                    b.Property<int>("FarmerId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Supplied_or_not")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("VegetableStocksId")
+                    b.Property<int>("VegetableStocksId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VegetableStocksId1")
                         .HasColumnType("int");
 
                     b.Property<int>("progress")
@@ -369,7 +371,7 @@ namespace Online_platform_for_vegetables.Migrations
 
                     b.HasIndex("FarmerId");
 
-                    b.HasIndex("VegetableStocksId");
+                    b.HasIndex("VegetableStocksId1");
 
                     b.ToTable("Orders");
                 });
@@ -511,15 +513,19 @@ namespace Online_platform_for_vegetables.Migrations
                 {
                     b.HasOne("Online_platform_for_vegetables.Model.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Online_platform_for_vegetables.Model.Farmer", "Farmer")
                         .WithMany()
-                        .HasForeignKey("FarmerId");
+                        .HasForeignKey("FarmerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Online_platform_for_vegetables.Model.VegetableStock", "vegetableStock")
                         .WithMany()
-                        .HasForeignKey("VegetableStocksId");
+                        .HasForeignKey("VegetableStocksId1");
 
                     b.Navigation("Customer");
 

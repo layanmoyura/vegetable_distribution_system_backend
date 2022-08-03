@@ -67,7 +67,7 @@ namespace Online_platform_for_vegetables.Controllers
                     issuer: "http://localhost:5000",
                     audience: "http://localhost:5000",
                     claims: new List<Claim>() {
-                        new Claim("role","customer"),new Claim("name",user.FirstName),new Claim("photo",user.Profile_Photo)},
+                        new Claim("role","customer"),new Claim("name",user.FirstName),new Claim("photo",user.Profile_Photo),new Claim("id",user.CustomerId.ToString())},
                     expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signinCredentials
                 );

@@ -13,7 +13,7 @@ namespace Online_platform_for_vegetables.Model
 
         [Required]
         public double required_amount_kg { get; set; }
-        [Required]
+       
         public string Deadline { get; set;  }
 
       
@@ -22,15 +22,28 @@ namespace Online_platform_for_vegetables.Model
        
         public bool Supplied_or_not { get; set; }
 
-        [Required]
+       
         public VegetableStock vegetableStock { get; set; }
 
         [Required]
+        public int VegetableStocksId { get; set; }
+
+        
         public Farmer Farmer { get; set; }
 
         [Required]
+        public int FarmerId { get; set; }
+
+       
         public Customer Customer { get; set; }
-        
+
+        [Required]
+
+        public int CustomerId { get; set; }
+
+
+
+
 
 
     }
