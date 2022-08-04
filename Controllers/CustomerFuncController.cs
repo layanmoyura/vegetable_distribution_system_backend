@@ -33,12 +33,8 @@ namespace Online_platform_for_vegetables.Controllers
 
                
                 var Entity = await _context.VegetableStocks.FindAsync(order.VegetableStocksId);
-                if (order.required_amount_kg>Entity.Amount)
-                {
-                    return StatusCode(411);
-                }
-
-                else
+                
+               
                 {
                     Entity.Amount = Entity.Amount - order.required_amount_kg;
 
