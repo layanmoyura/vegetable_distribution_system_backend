@@ -94,6 +94,12 @@ namespace Online_platform_for_vegetables.Controllers
             return await _context.Farmers.Where(s => s.FarmerId.Equals(id)).ToListAsync();
         }
 
+        [HttpGet("getfarmerorder/{id}")]
+        public async Task<ActionResult<IEnumerable<Order>>> Getfarmorder(int id)
+        {
+            return await _context.Orders.Where(s => s.FarmerId.Equals(id)).ToListAsync();
+        }
+
         [HttpGet("getfarmerprod/{id}")]
         public async Task<ActionResult<IEnumerable<VegetableStock>>> Getfarmprods(int id)
         {
@@ -112,11 +118,49 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
         [HttpGet("getcat/{id}")]
-        public async Task<ActionResult<IEnumerable<Vegetable>>> Getadmins(int id)
+        public async Task<ActionResult<IEnumerable<Vegetable>>> Getcat(int id)
         {
             return await _context.Vegetables.Where(s => s.VegetablesId.Equals(id)).ToListAsync();
         }
 
+        [HttpGet("getstock/{id}")]
+        public async Task<ActionResult<IEnumerable<VegetableStock>>> Getstocks(int id)
+        {
+            return await _context.VegetableStocks.Where(s => s.VegetableStocksId.Equals(id)).ToListAsync();
+        }
+
+
+        [HttpGet("getstockimg/{id}")]
+        public async Task<ActionResult<IEnumerable<VegetableStock>>> Getstocksimg(int id)
+        {
+            var Entity = await _context.VegetableStocks.FindAsync(id);
+            return Content(Entity.Stock_image);
+        }
+
+        [HttpPut("putorder/{id}")]
+        public async Task<ActionResult<Order>> Putord(int id, Order order)
+        {
+            try
+            {
+                {
+                    var Entity = await _context.Orders.FindAsync(id);
+
+
+
+                    if (Entity.progress != 0) { Entity.progress = order.progress; }
+                    if (Entity.Supplied_or_not != false) { Entity.Supplied_or_not = order.Supplied_or_not; }
+
+
+
+                    await _context.SaveChangesAsync();
+                    return StatusCode(202);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
 

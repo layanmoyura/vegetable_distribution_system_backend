@@ -33,17 +33,12 @@ namespace Online_platform_for_vegetables.Controllers
 
                
                 var Entity = await _context.VegetableStocks.FindAsync(order.VegetableStocksId);
+                Entity.Amount = Entity.Amount - order.required_amount_kg;
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+                return StatusCode(202);
+
                 
-               
-                {
-                    Entity.Amount = Entity.Amount - order.required_amount_kg;
-
-
-                    _context.Orders.Add(order);
-                    await _context.SaveChangesAsync();
-                    return StatusCode(202);
-
-                }
 
 
 

@@ -50,6 +50,12 @@ namespace Online_platform_for_vegetables.Controllers
             return await _context.Vegetables.ToListAsync();
         }
 
+        [HttpGet("getorder")]
+        public async Task<ActionResult<IEnumerable<Order>>> Getorder()
+        {
+            return await _context.Orders.ToListAsync();
+        }
+
         [HttpDelete("delcat/{id}")]
         public async Task<IActionResult> DeleteCat(int id)
         {
