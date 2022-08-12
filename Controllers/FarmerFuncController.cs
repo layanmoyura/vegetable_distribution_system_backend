@@ -96,8 +96,10 @@ namespace Online_platform_for_vegetables.Controllers
 
         [HttpGet("getfarmerorder/{id}")]
         public async Task<ActionResult<IEnumerable<Order>>> Getfarmorder(int id)
+
         {
-            return await _context.Orders.Where(s => s.FarmerId.Equals(id)).ToListAsync();
+            
+            return await _context.Orders.Where(s => s.FarmerId.Equals(id) && s.Supplied_or_not==false).ToListAsync();
         }
 
         [HttpGet("getfarmerprod/{id}")]
@@ -116,6 +118,10 @@ namespace Online_platform_for_vegetables.Controllers
 
             return StatusCode(202);
         }
+
+
+
+       
 
         [HttpGet("getcat/{id}")]
         public async Task<ActionResult<IEnumerable<Vegetable>>> Getcat(int id)
@@ -138,7 +144,7 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
         [HttpPut("putorder/{id}")]
-        public async Task<ActionResult<Order>> Putord(int id, Order order)
+        public async Task<ActionResult<Order>> Putord(int id,Order order)
         {
             try
             {
@@ -147,8 +153,8 @@ namespace Online_platform_for_vegetables.Controllers
 
 
 
-                    if (Entity.progress != 0) { Entity.progress = order.progress; }
-                    if (Entity.Supplied_or_not != false) { Entity.Supplied_or_not = order.Supplied_or_not; }
+                    if (Entity.progress == 0) { Entity.progress = order.progress; }
+                    if (Entity.Supplied_or_not == false) { Entity.Supplied_or_not = order.Supplied_or_not; }
 
 
 
