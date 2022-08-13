@@ -50,6 +50,11 @@ namespace Online_platform_for_vegetables.Controllers
             return await _context.Vegetables.ToListAsync();
         }
 
+        [HttpGet("getcou")]
+        public async Task<ActionResult<IEnumerable<Courier>>> Getcou()
+        {
+            return await _context.Couriers.ToListAsync();
+        }
         [HttpGet("getorder")]
         public async Task<ActionResult<IEnumerable<Order>>> Getorder()
         {
@@ -72,6 +77,24 @@ namespace Online_platform_for_vegetables.Controllers
         public async Task<ActionResult<IEnumerable<Admin>>> Getadmins(int id)
         {
             return await _context.Admins.Where(s => s.AdminId.Equals(id)).ToListAsync();
+        }
+
+        [HttpGet("getorder/{id}")]
+        public async Task<ActionResult<IEnumerable<Order>>> Getorderid(int id)
+        {
+            return await _context.Orders.Where(s => s.OrderId.Equals(id)).ToListAsync();
+        }
+
+        [HttpGet("getcus/{id}")]
+        public async Task<ActionResult<IEnumerable<Customer>>> Getcus(int id)
+        {
+            return await _context.Customers.Where(s => s.CustomerId.Equals(id)).ToListAsync();
+        }
+
+        [HttpGet("getfarm/{id}")]
+        public async Task<ActionResult<IEnumerable<Farmer>>> Getfarmer(int id)
+        {
+            return await _context.Farmers.Where(s => s.FarmerId.Equals(id)).ToListAsync();
         }
 
 
