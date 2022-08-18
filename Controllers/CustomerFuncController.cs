@@ -91,6 +91,25 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
 
+        [HttpPost("customercomment")]
+        public async Task<ActionResult<Payment>> Postcom(Comment comment)
+        {
+            try
+            {
+                _context.Comments.Add(comment);
+                await _context.SaveChangesAsync();
+
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+
         [HttpPut("customerdetedit")]
 
         public async Task<ActionResult> Update(int id, Customer customer)
