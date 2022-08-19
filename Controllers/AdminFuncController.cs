@@ -85,6 +85,12 @@ namespace Online_platform_for_vegetables.Controllers
             return await _context.Orders.Where(s => s.OrderId.Equals(id)).ToListAsync();
         }
 
+        [HttpGet("getorderbycus/{id}")]
+        public async Task<ActionResult<IEnumerable<Order>>> Getordercus(int id)
+        {
+            return await _context.Orders.Where(s => s.CustomerId.Equals(id)).ToListAsync();
+        }
+
         [HttpGet("getcus/{id}")]
         public async Task<ActionResult<IEnumerable<Customer>>> Getcus(int id)
         {
