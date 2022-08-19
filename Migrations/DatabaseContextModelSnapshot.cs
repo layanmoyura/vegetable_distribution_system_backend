@@ -254,13 +254,13 @@ namespace Online_platform_for_vegetables.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdminId")
+                    b.Property<int>("AdminId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CourierVehiclId")
+                    b.Property<int>("CourierVehiclId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<bool>("delivered_or_not")
@@ -273,12 +273,6 @@ namespace Online_platform_for_vegetables.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DeliveryId");
-
-                    b.HasIndex("AdminId");
-
-                    b.HasIndex("CourierVehiclId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("Deliveries");
                 });
@@ -510,27 +504,6 @@ namespace Online_platform_for_vegetables.Migrations
                     b.HasKey("VegetableStocksId");
 
                     b.ToTable("VegetableStocks");
-                });
-
-            modelBuilder.Entity("Online_platform_for_vegetables.Model.Delivery", b =>
-                {
-                    b.HasOne("Online_platform_for_vegetables.Model.Admin", "Admin")
-                        .WithMany()
-                        .HasForeignKey("AdminId");
-
-                    b.HasOne("Online_platform_for_vegetables.Model.Courier", "Courier")
-                        .WithMany()
-                        .HasForeignKey("CourierVehiclId");
-
-                    b.HasOne("Online_platform_for_vegetables.Model.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId");
-
-                    b.Navigation("Admin");
-
-                    b.Navigation("Courier");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Online_platform_for_vegetables.Model.Order", b =>

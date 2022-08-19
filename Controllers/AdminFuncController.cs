@@ -58,7 +58,7 @@ namespace Online_platform_for_vegetables.Controllers
         [HttpGet("getorder")]
         public async Task<ActionResult<IEnumerable<Order>>> Getorder()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.Orders.Where(s=>s.Supplied_or_not==true &&s.progress==1).ToListAsync();
         }
 
         [HttpDelete("delcat/{id}")]
@@ -128,6 +128,51 @@ namespace Online_platform_for_vegetables.Controllers
                 throw ex;
             }
         }
+
+
+        [HttpPut("updateord/{id}")]
+        public async Task<ActionResult<Order>> Putcat(int id, int val)
+        {
+            try
+            {
+                {
+                    var Entity = await _context.Orders.FindAsync(id);
+
+
+
+                    Entity.progress=2;
+
+                    await _context.SaveChangesAsync();
+                    return StatusCode(202);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost("adddel")]
+        public async Task<ActionResult<Delivery>> Postdel(Delivery del)
+        {
+            try
+            {
+
+                _context.Deliveries.Add(del);
+
+
+                await _context.SaveChangesAsync();
+
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
 
 
     }

@@ -14,9 +14,14 @@ namespace Online_platform_for_vegetables.Model
         public string from { get; set; }
         public string to { get; set; }
         public bool delivered_or_not { get; set; }
-        public Admin Admin{get; set;}
-        public Courier Courier { get; set; }
-        public Order Order { get; set; }
+       
+
+        public int AdminId { get; set; }
+       
+
+        public int  CourierVehiclId { get; set; }
+     
+        public int OrderId { get; set; }
 
 
     }
