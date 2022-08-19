@@ -20,30 +20,16 @@ namespace Online_platform_for_vegetables.Controllers
     {
         private IMapper mapper;
 
-        public UserManager<Admin> userManager;
+        public UserManager<Customer> userManager;
 
-        public AdminController(IMapper mapper,UserManager<Admin> userManager)
+        public AdminController(IMapper mapper,UserManager<Customer> userManager)
         {
             this.mapper = mapper;
             this.userManager = userManager;
 
         }
 
-        [Route("register")]
-        [HttpPost]
-        public async Task<ActionResult> Register(AdminRegister adminRegister)
-        {
-            var user = mapper.Map<Admin>(adminRegister);
-            var result = await userManager.CreateAsync(user, adminRegister.Password);
-
-            if (result.Succeeded)
-            {
-                return Ok(201);
-            }
-
-            return BadRequest(result.Errors);
-
-        }
+ 
 
         [Route("login")]
         [HttpPost]
@@ -51,7 +37,8 @@ namespace Online_platform_for_vegetables.Controllers
         public async Task<ActionResult> Login(Loginrole loginRole)
         {
             var user = await userManager.FindByEmailAsync(loginRole.Email_or_phonenumber);
-            if(user!=null && await userManager.CheckPasswordAsync(user,loginRole.Password))
+
+            if(user!=null && await userManager.CheckPasswordAsync(user,loginRole.Password) && ("admin@email.com" == loginRole.Email_or_phonenumber))
             {
 
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
@@ -60,7 +47,7 @@ namespace Online_platform_for_vegetables.Controllers
                     issuer: "http://localhost:5000",
                     audience: "http://localhost:5000",
                     claims: new List<Claim>() {
-                        new Claim("role","admin"),new Claim("name",user.FirstName),new Claim("photo",user.Profile_Photo),new Claim("id",user.AdminId.ToString())},
+                        new Claim("role","admin"),new Claim("name",user.FirstName),new Claim("photo",user.Profile_Photo),new Claim("id",user.CustomerId.ToString())},
                     expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signinCredentials
                 );
