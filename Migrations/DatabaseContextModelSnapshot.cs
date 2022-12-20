@@ -374,9 +374,6 @@ namespace Online_platform_for_vegetables.Migrations
                     b.Property<int>("VegetableStocksId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VegetableStocksId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("progress")
                         .HasColumnType("int");
 
@@ -384,12 +381,6 @@ namespace Online_platform_for_vegetables.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("FarmerId");
-
-                    b.HasIndex("VegetableStocksId1");
 
                     b.ToTable("Orders");
                 });
@@ -410,30 +401,99 @@ namespace Online_platform_for_vegetables.Migrations
                     b.Property<string>("Card_type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FarmerId")
+                    b.Property<int>("FarmerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Farmers_acc_no")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("PaymentId");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("FarmerId");
-
-                    b.HasIndex("OrderId");
-
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Online_platform_for_vegetables.Model.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Living_City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NIC_No")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Profile_Photo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rolename")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Online_platform_for_vegetables.Model.Vegetable", b =>
@@ -504,52 +564,6 @@ namespace Online_platform_for_vegetables.Migrations
                     b.HasKey("VegetableStocksId");
 
                     b.ToTable("VegetableStocks");
-                });
-
-            modelBuilder.Entity("Online_platform_for_vegetables.Model.Order", b =>
-                {
-                    b.HasOne("Online_platform_for_vegetables.Model.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Online_platform_for_vegetables.Model.Farmer", "Farmer")
-                        .WithMany()
-                        .HasForeignKey("FarmerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Online_platform_for_vegetables.Model.VegetableStock", "vegetableStock")
-                        .WithMany()
-                        .HasForeignKey("VegetableStocksId1");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Farmer");
-
-                    b.Navigation("vegetableStock");
-                });
-
-            modelBuilder.Entity("Online_platform_for_vegetables.Model.Payment", b =>
-                {
-                    b.HasOne("Online_platform_for_vegetables.Model.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Online_platform_for_vegetables.Model.Farmer", "Farmer")
-                        .WithMany()
-                        .HasForeignKey("FarmerId");
-
-                    b.HasOne("Online_platform_for_vegetables.Model.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Farmer");
-
-                    b.Navigation("Order");
                 });
 #pragma warning restore 612, 618
         }

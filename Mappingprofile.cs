@@ -11,6 +11,7 @@ namespace Online_platform_for_vegetables
             CreateMap<FarmerRegister, Farmer>().ForMember(u => u.UserName, opt => opt.MapFrom(m => m.Email));
             CreateMap<CustomerRegister, Customer>().ForMember(u => u.UserName, opt => opt.MapFrom(m => m.Email));
             CreateMap<CourierRegister, Courier>().ForMember(u => u.UserName, opt => opt.MapFrom(m => m.PhoneNumber));
+            CreateMap<RoleRegister, Role>().ForMember(u => u.UserName, opt => opt.MapFrom(m => m.Email));
         }
     }
 }

@@ -17,16 +17,18 @@ namespace Online_platform_for_vegetables.Model
         public string Card_type { get; set; }
         public DateTime Date { get; set; }
 
+        public int OrderId { get; set; }
+        public int CustomerId { get; set; }
+        public int FarmerId { get; set; }
 
-        public Order Order { get; set; }
 
-       
-        public Customer Customer { get; set; }
 
-       
-        public Farmer Farmer { get; set; }
 
-        
+
+
+
+
+
 
     }
 }

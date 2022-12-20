@@ -34,7 +34,7 @@ namespace Online_platform_for_vegetables
 
             services.AddCors(options => options.AddDefaultPolicy(
 
-                builder => builder.WithOrigins("http://localhost:4201").AllowAnyMethod().AllowAnyHeader()));
+                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
 
             services.AddDbContext<DatabaseContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DatabaseContext_1")));
@@ -42,6 +42,7 @@ namespace Online_platform_for_vegetables
             services.AddIdentity<Farmer, IdentityRole>().AddEntityFrameworkStores<DatabaseContext>();
             services.AddIdentity<Customer, IdentityRole>().AddEntityFrameworkStores<DatabaseContext>();
             services.AddIdentity<Courier, IdentityRole>().AddEntityFrameworkStores<DatabaseContext>();
+            services.AddIdentity<Role, IdentityRole>().AddEntityFrameworkStores<DatabaseContext>();
 
             var mappingConfig = new MapperConfiguration(c =>
               {

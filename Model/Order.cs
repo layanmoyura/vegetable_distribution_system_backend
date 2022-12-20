@@ -23,19 +23,19 @@ namespace Online_platform_for_vegetables.Model
         public bool Supplied_or_not { get; set; }
 
        
-        public VegetableStock vegetableStock { get; set; }
+       
 
         [Required]
         public int VegetableStocksId { get; set; }
 
         
-        public Farmer Farmer { get; set; }
+      
 
         [Required]
         public int FarmerId { get; set; }
 
        
-        public Customer Customer { get; set; }
+        
 
         [Required]
 

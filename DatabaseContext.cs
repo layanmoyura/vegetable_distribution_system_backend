@@ -28,6 +28,7 @@ namespace Online_platform_for_vegetables
         public DbSet<Payment> Payments { get; set;  }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Role> Roles { get; set; }
         
         
 

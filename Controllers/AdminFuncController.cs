@@ -29,13 +29,24 @@ namespace Online_platform_for_vegetables.Controllers
         {
             try
             {
-                
-                _context.Vegetables.Add(cat);
+                var veg = await _context.Vegetables.Where(s=>s.Name==cat.Name).ToArrayAsync();
+
+                if (veg.Length==1)
+                {
+                    return StatusCode(400);
+                }
+
+                else
+                {
+                    _context.Vegetables.Add(cat);
+
+
+                    await _context.SaveChangesAsync();
+
+                    return StatusCode(201);
+                }
 
                 
-                await _context.SaveChangesAsync();
-
-                return StatusCode(201);
             }
             catch (Exception ex)
             {
@@ -92,9 +103,9 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
         [HttpGet("getcus/{id}")]
-        public async Task<ActionResult<IEnumerable<Customer>>> Getcus(int id)
+        public async Task<ActionResult<IEnumerable<Role>>> Getcus(int id)
         {
-            return await _context.Customers.Where(s => s.CustomerId.Equals(id)).ToListAsync();
+            return await _context.Roles.Where(s => s.RoleId.Equals(id)).ToListAsync();
         }
 
         [HttpGet("getfarm/{id}")]

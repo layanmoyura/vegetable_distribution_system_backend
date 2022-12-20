@@ -50,9 +50,9 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
         [HttpGet("farmer/{id}")]
-        public async Task<ActionResult<IEnumerable<Farmer>>> Getfamerk(int id)
+        public async Task<ActionResult<IEnumerable<Role>>> Getfamerk(int id)
         {
-            return await _context.Farmers.Where(s => s.FarmerId.Equals(id)).ToListAsync();
+            return await _context.Roles.Where(s => s.RoleId.Equals(id)).ToListAsync();
         }
 
 
@@ -151,9 +151,9 @@ namespace Online_platform_for_vegetables.Controllers
 
         
         [HttpGet("getcustomeredit/{id}")]
-        public async Task<ActionResult<IEnumerable<Customer>>> Getcusdetails(int id)
+        public async Task<ActionResult<IEnumerable<Role>>> Getcusdetails(int id)
         {
-            return await _context.Customers.Where(s => s.CustomerId.Equals(id)).ToListAsync();
+            return await _context.Roles.Where(s => s.RoleId.Equals(id)).ToListAsync();
         }
 
         
