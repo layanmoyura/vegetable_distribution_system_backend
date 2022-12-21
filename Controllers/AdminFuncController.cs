@@ -182,6 +182,56 @@ namespace Online_platform_for_vegetables.Controllers
             }
         }
 
+        [HttpGet("getdelbycou/{id}")]
+        public async Task<ActionResult<IEnumerable<Delivery>>> Getdelcou(int id)
+        {
+            return await _context.Deliveries.Where(s => s.CourierVehiclId.Equals(id)&& s.delivered_or_not==false).ToListAsync();
+        }
+
+        [HttpPut("updatedel/{id}")]
+        public async Task<ActionResult<Order>> Putdel(int id, int val)
+        {
+            try
+            {
+                {
+                    var Entity = await _context.Orders.FindAsync(id);
+
+
+
+                    Entity.progress = 3;
+
+                    await _context.SaveChangesAsync();
+                    return StatusCode(202);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPut("confirmdel/{id}")]
+        public async Task<ActionResult<Delivery>> condel(int id, int val)
+        {
+            try
+            {
+                {
+                    var Entity = await _context.Deliveries.FindAsync(id);
+
+
+
+                    Entity.delivered_or_not=true;
+
+                    await _context.SaveChangesAsync();
+                    return StatusCode(202);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
 
