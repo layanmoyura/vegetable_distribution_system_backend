@@ -62,9 +62,9 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
         [HttpGet("getcou")]
-        public async Task<ActionResult<IEnumerable<Courier>>> Getcou()
+        public async Task<ActionResult<IEnumerable<Role>>> Getcou()
         {
-            return await _context.Couriers.ToListAsync();
+            return await _context.Roles.Where(s=>s.Rolename == "courier").ToListAsync();
         }
         [HttpGet("getorder")]
         public async Task<ActionResult<IEnumerable<Order>>> Getorder()

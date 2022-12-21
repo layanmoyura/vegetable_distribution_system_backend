@@ -102,6 +102,14 @@ namespace Online_platform_for_vegetables.Controllers
             return await _context.Orders.Where(s => s.FarmerId.Equals(id) && s.Supplied_or_not==false).ToListAsync();
         }
 
+        [HttpGet("getfarmerorder2/{id}")]
+        public async Task<ActionResult<IEnumerable<Order>>> Getfarmorder2(int id)
+
+        {
+
+            return await _context.Orders.Where(s => s.FarmerId.Equals(id) && s.Supplied_or_not == true).ToListAsync();
+        }
+
         [HttpGet("getfarmerprod/{id}")]
         public async Task<ActionResult<IEnumerable<VegetableStock>>> Getfarmprods(int id)
         {
