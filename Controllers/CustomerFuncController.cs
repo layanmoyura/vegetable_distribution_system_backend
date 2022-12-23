@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Online_platform_for_vegetables.Model;
 using System;
@@ -18,13 +19,13 @@ namespace Online_platform_for_vegetables.Controllers
             _context = context;
         }
 
-
+       
         [HttpGet("customerveg")]
         public async Task<ActionResult<IEnumerable<Vegetable>>> Getbook()
         {
             return await _context.Vegetables.ToListAsync();
         }
-
+        
         [HttpPost("customerorder")]
         public async Task<ActionResult<Order>> PostOrder(Order order )
         {
@@ -48,7 +49,7 @@ namespace Online_platform_for_vegetables.Controllers
                 throw ex;
             }
         }
-
+        
         [HttpGet("farmer/{id}")]
         public async Task<ActionResult<IEnumerable<Role>>> Getfamerk(int id)
         {
@@ -57,6 +58,7 @@ namespace Online_platform_for_vegetables.Controllers
 
 
         //by category
+        
         [HttpGet("customervegetablestockbycat/{bycategory}")]
         public async Task<ActionResult<IEnumerable<VegetableStock>>> Getvegestock(int bycategory)
         {
@@ -64,6 +66,7 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
         //all products
+        
         [HttpGet("customervegetablestockall")]
         public async Task<ActionResult<IEnumerable<VegetableStock>>> Getallstock()
         {
@@ -71,7 +74,7 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
 
-
+        
         [HttpPost("customerpayment")]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
@@ -90,7 +93,7 @@ namespace Online_platform_for_vegetables.Controllers
 
         }
 
-
+        
         [HttpPost("customercomment")]
         public async Task<ActionResult<Payment>> Postcom(Comment comment)
         {
@@ -109,7 +112,7 @@ namespace Online_platform_for_vegetables.Controllers
 
         }
 
-
+        
         [HttpPut("customerdetedit")]
 
         public async Task<ActionResult> Update(int id, Customer customer)
@@ -149,7 +152,7 @@ namespace Online_platform_for_vegetables.Controllers
         }
 
 
-        
+       
         [HttpGet("getcustomeredit/{id}")]
         public async Task<ActionResult<IEnumerable<Role>>> Getcusdetails(int id)
         {

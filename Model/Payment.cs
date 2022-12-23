@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,7 +15,7 @@ namespace Online_platform_for_vegetables.Model
         public string Farmers_acc_no { get; set; }
         public string Card_no { get; set; }
         public string Card_type { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         public int OrderId { get; set; }
         public int CustomerId { get; set; }

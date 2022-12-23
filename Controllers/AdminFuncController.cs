@@ -188,6 +188,28 @@ namespace Online_platform_for_vegetables.Controllers
             return await _context.Deliveries.Where(s => s.CourierVehiclId.Equals(id)&& s.delivered_or_not==false).ToListAsync();
         }
 
+        [HttpPut("updatedel0/{id}")]
+        public async Task<ActionResult<Order>> Putdel0(int id, int val)
+        {
+            try
+            {
+                {
+                    var Entity = await _context.Orders.FindAsync(id);
+
+
+
+                    Entity.progress = 3;
+
+                    await _context.SaveChangesAsync();
+                    return StatusCode(202);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         [HttpPut("updatedel/{id}")]
         public async Task<ActionResult<Order>> Putdel(int id, int val)
         {
@@ -198,7 +220,7 @@ namespace Online_platform_for_vegetables.Controllers
 
 
 
-                    Entity.progress = 3;
+                    Entity.progress = 4;
 
                     await _context.SaveChangesAsync();
                     return StatusCode(202);

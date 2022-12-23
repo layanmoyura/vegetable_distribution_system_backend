@@ -404,8 +404,8 @@ namespace Online_platform_for_vegetables.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FarmerId")
                         .HasColumnType("int");
