@@ -102,6 +102,18 @@ namespace Online_platform_for_vegetables.Controllers
             return await _context.Orders.Where(s => s.CustomerId.Equals(id)).ToListAsync();
         }
 
+        [HttpGet("getorderbycus1/{id}")]
+        public async Task<ActionResult<IEnumerable<Order>>> Getordercus1(int id)
+        {
+            return await _context.Orders.Where(s => s.CustomerId.Equals(id) && s.progress != 4).ToListAsync();
+        }
+
+        [HttpGet("getorderbycus2/{id}")]
+        public async Task<ActionResult<IEnumerable<Order>>> Getordercus2(int id)
+        {
+            return await _context.Orders.Where(s => s.CustomerId.Equals(id)&& s.progress==4).ToListAsync();
+        }
+
         [HttpGet("getcus/{id}")]
         public async Task<ActionResult<IEnumerable<Role>>> Getcus(int id)
         {
@@ -186,6 +198,12 @@ namespace Online_platform_for_vegetables.Controllers
         public async Task<ActionResult<IEnumerable<Delivery>>> Getdelcou(int id)
         {
             return await _context.Deliveries.Where(s => s.CourierVehiclId.Equals(id)&& s.delivered_or_not==false).ToListAsync();
+        }
+
+        [HttpGet("getdelbycou1/{id}")]
+        public async Task<ActionResult<IEnumerable<Delivery>>> Getdelcou1(int id)
+        {
+            return await _context.Deliveries.Where(s => s.CourierVehiclId.Equals(id) && s.delivered_or_not == true).ToListAsync();
         }
 
         [HttpPut("updatedel0/{id}")]
