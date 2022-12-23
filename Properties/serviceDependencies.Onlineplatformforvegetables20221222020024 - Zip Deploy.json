@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/online-platform-for-vegetablesdbserver/databases/ee5206_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DatabaseContext_1",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
